@@ -1573,7 +1573,7 @@ H.explorer_confirm_modified = function(explorer, action_name)
   if not has_modified then return true end
 
   local msg = string.format('There is at least one modified buffer\n\nConfirm %s without synchronization?', action_name)
-  local confirm_res = vim.fn.confirm(msg, '&Yes\n&No', 1, 'Question')
+  local confirm_res = vim.fn.confirm(msg, '&Ok\n&Cancel', 1, 'Question')
   return confirm_res == 1
 end
 
@@ -2376,7 +2376,7 @@ end
 -- File system actions --------------------------------------------------------
 H.fs_actions_confirm = function(fs_actions)
   local msg = table.concat(H.fs_actions_to_lines(fs_actions), '\n')
-  local confirm_res = vim.fn.confirm(msg, '&Yes\n&No', 1, 'Question')
+  local confirm_res = vim.fn.confirm(msg, '&Ok\n&Cancel', 1, 'Question')
   return confirm_res == 1
 end
 
