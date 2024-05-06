@@ -1039,6 +1039,7 @@ MiniFiles.default_sort = function(fs_entries)
         path = x.path,
         lower_name = x.name:lower(),
         is_dir = x.fs_type == 'directory',
+		ctime = vim.loop.fs_stat(x.path).birthtime.sec
       }
     end,
     fs_entries
@@ -2326,7 +2327,7 @@ H.compare_fs_entries = function(a, b)
   if not a.is_dir and b.is_dir then return false end
 
   -- Otherwise order alphabetically ignoring case
-  return a.lower_name < b.lower_name
+  return a.ctime > b.ctime
 end
 
 H.fs_normalize_path = function(path)
